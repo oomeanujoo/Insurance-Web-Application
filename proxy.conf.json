@@ -1,0 +1,20 @@
+{
+  "/com.eibus.web.soap.Gateway.wcp": {
+    "target": "http://43.242.214.148:8081/home/Lombard/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  },
+  "/com.eibus.sso.web.authentication.PreLoginInfo.wcp": {
+    "target": "http://43.242.214.148:8081/home/Lombard/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  },
+  "/cordys/": {
+    "target": "http://43.242.214.148:8081/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  }
+}

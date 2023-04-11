@@ -1,0 +1,410 @@
+<main>
+  <div class="d-flex justify-content-center text-center mt-5">
+    <div id="sect1" class="container-fluid"></div>
+  </div>
+
+  <div
+    class="container-fluid bg-trasparent mb-0 my-4 p-3 text-center d-flex align-items-center"
+    style="color: #3d3d3d"
+  >
+    <i style="color: #3d3d3d; font-size: 30px" class="fa fa-home"></i>
+    &nbsp;
+    <span style="color: #3d3d3d; font-size: 30px">/</span>
+    &nbsp;
+    <h4 style="color: #3d3d3d" class="fw-bolder m-0">Policy Summary</h4>
+    <!-- <p
+        class="fw-normal"
+        style="margin-top: -8px; color: #3d3d3d; padding: 20px"
+      >
+        <span> Add assets for insurane </span>
+      </p> -->
+  </div>
+</main>
+
+<div class="container-fluid mb-5">
+  <div class="card">
+    <div class="row gx-sm-2">
+      <div
+        style="border-right: 1px solid #ccc; padding-right: 0"
+        class="col-3 d-inline-block justify-content-center"
+      >
+        <div class="d-flex justify-content-center mb-3">
+          <div class="mt-4" style="color: #3d3d3d">
+            <p class="fw-normal" style="color: #fd7720">
+              <span class="fs-6 fw-bold"> Insurance Details </span>
+            </p>
+          </div>
+        </div>
+        <div
+          *ngFor="let item of tableData; let i = index"
+          class="card m-3 p-1"
+          style="border-radius: 5px; background-color: #fff2ea"
+        >
+          <div>
+            <span
+              style="font-size: smaller"
+              class="badge alert-success fw-normal"
+              >{{ item.Temp3 }}</span
+            >
+            <hr class="line my-2" />
+          </div>
+
+          <div class="row g-2">
+            <div class="col-5 d-grid text-center">
+              <span class="pull-left" style="font-size: small"
+                >Sum Insured</span
+              >
+              <h6>{{"₹ "+item.invoiceamount}}</h6>
+            </div>
+            <div class="col-5 d-grid text-center">
+              <span class="" style="font-size: small; margin-left: -7px;">Premium Amount</span>
+              <h6 style="
+              margin-left: -9px;"
+          >{{"₹ "+item.premiumamount}}</h6>
+            </div>
+            <div class="col d-grid text-center">
+              <span class="pull-right" style="font-size: small">Year</span>
+              <h6>{{ item.premiumyear }}</h6>
+            </div>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div class="mt-4 text-center" style="color: #3d3d3d">
+            <p class="fw-normal" style="color: #fd7720">
+              <span class="fs-6 fw-bold">Key Benefits</span>
+            </p>
+          </div>
+          <!-- <h6 style="color: #fd7720">Key Benefits</h6> -->
+          <div
+            style="font-size: smaller; width: 299px"
+            class="col-11 text-start"
+          >
+            <ul class="px-3">
+              <span class="fa fa-check-square-o mb-0"></span>
+              Extends manufacturing warranty upto 2 years & can opted upto 3
+              months from date of sale
+            </ul>
+            <ul class="px-3" style="margin-top: -11px">
+              <span class="fa fa-check-square-o"></span>
+              Covers mechanical & electric breakdown
+            </ul>
+            <ul class="px-3" style="margin-top: -11px">
+              <span class="fa fa-check-square-o"></span>
+              Only applicable with products with minimum 12 months
+              manufacturer's warranty & valid invoice
+            </ul>
+            <ul class="px-3" style="margin-top: -11px">
+              <span class="fa fa-check-square-o"></span>
+              Product Category:
+              <!-- <ol>
+                <li>
+                  Home Entertainment: audio & visual - TV/Home Theatre/Music
+                  System
+                </li>
+                <li>
+                  IT Products: Laptops, Mobile, PDA or other communicating
+                  devices
+                </li>
+                <li>
+                  Consumer & Kitchen Appliances: Household appliances like air
+                  conditioners, dishwashers, refrigerators etc
+                </li>
+              </ol> -->
+            </ul>
+            <ol
+              style="
+                margin-top: -11px;
+                padding-right: 2rem !important;
+                padding-left: 2rem !important;
+              "
+            >
+              <li>
+                Home Entertainment: audio & visual - TV/Home Theatre/Music
+                System
+              </li>
+              <li>
+                IT Products: Laptops, Mobile, PDA or other communicating devices
+              </li>
+              <li>
+                Consumer & Kitchen Appliances: Household appliances like air
+                conditioners, dishwashers, refrigerators etc
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col d-inline-block justify-content-center mb-3">
+        <div class="d-flex justify-content-center">
+          <div class="mt-4" style="color: #3d3d3d">
+            <p class="fw-normal" style="color: #fd7720">
+              <span class="fs-6 fw-bold"> Correspondence Details </span>
+            </p>
+          </div>
+        </div>
+        <div class="container my-3">
+          <div class="row">
+            <div class="col-sm-4 form-group">
+              <input
+                [(ngModel)]="savedData[0].Name"
+                type="text"
+                class="form-control"
+                name="model"
+                id="model"
+                placeholder="Name"
+                disabled
+              />
+              <!-- <ng-select
+                  placeholder="Asset Type"
+                  [items]="assettpearray"
+                  [searchable]="false"
+                  bindLabel="name"
+                    bindValue="name"
+                    [closeOnSelect]="false"
+                  name="assettype" id="assettype"
+                  [(ngModel)]="item.assettype"
+                          >
+            </ng-select> -->
+            </div>
+            <div class="col-sm-4 form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="model"
+                id="model"
+                [(ngModel)]="savedData[0].ContactNo"
+                placeholder="Mobile Number"
+                disabled
+              />
+            </div>
+            <div class="col-sm-4 form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="model"
+                [(ngModel)]="savedData[0].Email"
+                id="model"
+                placeholder="Email ID"
+                disabled
+              />
+            </div>
+            <div class="col-sm-6 form-group">
+              <textarea
+                class="form-control"
+                id="textAreaExample1"
+                [(ngModel)]="savedData[0].Address1"
+                rows="1"
+                placeholder="Address 1"
+                disabled
+              ></textarea>
+            </div>
+            <div class="col-sm-6 form-group" style="margin-top: -25px">
+              <!-- <input type="date"  class="form-control" name="dateofpurchase" id="dateofpurchase"
+                      [(ngModel)]="item.dateofpurchase" placeholder="Date of Purchase"> -->.
+
+              <textarea
+                class="form-control"
+                id="textAreaExample1"
+                [(ngModel)]="savedData[0].Address2"
+                rows="1"
+                placeholder="Address 2"
+                disabled
+              ></textarea>
+
+              <!-- <input
+      placeholder="Date of Purchase"
+      class="textbox-n form-control"
+      type="text"
+      [(ngModel)]="item.dateofpurchase"
+      onfocus="(this.type='date')"
+      id="date" /> -->
+            </div>
+            <div class="col-sm-4 form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="model"
+                id="model"
+                [(ngModel)]="savedData[0].Pincode"
+                placeholder="Pin"
+                disabled
+              />
+            </div>
+            <div class="col-sm-4 form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="model"
+                id="model"
+                [(ngModel)]="savedData[0].City"
+                placeholder="City"
+                disabled
+              />
+            </div>
+            <div class="col-sm-4 form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="model"
+                id="model"
+                [(ngModel)]="savedData[0].State"
+                placeholder="State"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+        <div class="container my-3 mt-0">
+          <div class="d-flex justify-content-center">
+            <div class="mt-1" style="color: #3d3d3d">
+              <p class="fw-normal" style="color: #fd7720">
+                <span class="fs-6 fw-bold"> Billing Details </span>
+              </p>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped" style="
+            FONT-SIZE: small;">
+              <thead>
+                <tr
+                  class="fw-semibold text-gray-800 border-bottom-2 border-gray-200"
+                  style="font-size: 15px;"
+                >
+                  <th scope="col" class="text-center">Asset</th>
+                  <th scope="col" class="text-center">Manufacturer</th>
+                  <th scope="col" class="text-center">Insured Value</th>
+                  <th scope="col" class="text-center">Premium Amount</th>
+                  <th scope="col" class="text-center">Invoice Number</th>
+                  <th scope="col" class="text-center">Policy Start Date</th>
+                  <th scope="col" class="text-center">Policy End Date</th>
+                </tr>
+              </thead>
+              <tbody style="
+              font-size: 14px;
+          ">
+                <tr *ngFor="let item of tableData">
+                  <td class="text-center">{{item.assettype}}</td>
+                  <td class="text-center">{{item.manufacturer}}-{{item.model}}</td>
+                  <td class="text-center">{{"₹ "+item.invoiceamount}}</td>
+                  <td class="text-center">{{item.premiumamount}}</td>
+                  <td class="text-center">{{item.invoiceno}}</td>
+                  <td class="text-center">{{item.Temp4}}</td>
+                  <td class="text-center">{{item.Temp5}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="form-check">
+            <div>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault1"
+              />
+            </div>
+            <div>
+              <label class="form-check-label">
+                I accept the
+
+                <span (click)="openmodel1()" style="color: blue"
+                  >terms & conditions</span
+                >
+                for extented warranty
+              </label>
+            </div>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label">
+              I agree to recieve policy on WhatsApp on registered mobile number
+            </label>
+          </div>
+          <button class="btn btn-warning ms-3"  (click)="paymentclick()">Pay</button>
+
+          <button class="btn btn-warning" (click)="goTo()">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal3"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white" id="exampleModalLabel">
+          Extended Warranty Terms and Conditions
+        </h5>
+        <button
+          type="button"
+          class="btn btn-link text-light"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          type="button"
+          class="btn-close btn-close-white"
+          data-mdb-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="d-flex flex-row justify-content-center ms-2">
+            <ul style="font-size: smaller" class="list-unstyled fw-normal">
+              <li>
+                <span class="fa fa-check-square-o"></span> &nbsp; Geographical
+                Limit: Within India Only new devices shall be covered. Policy is
+                non transferable.
+              </li>
+              <li>
+                <span class="fa fa-check-square-o"></span> &nbsp; If the
+                estimated repair cost is more than 75% of the market value of
+                the device, it shall be treated os a Total Loss case.
+              </li>
+              <li>
+                <span class="fa fa-check-square-o"></span> &nbsp; In the event
+                of Total loss or if the device is Beyond Economic Repair,
+                insured shall be entitled for either
+              </li>
+              <li>
+                <span class="fa fa-check-square-o"></span> &nbsp; Replacement
+                handset of similar make, model and specifications
+              </li>
+              <li>
+                <span class="fa fa-check-square-o"></span> &nbsp; Cash
+                settlement equivalent to the depreciated value of the asset,
+                whichever is lower.
+              </li>
+              <li>
+                <span class="fa fa-check-square-o"></span> &nbsp; Inthe event of
+                Total loss or if the device is Beyond Economic Repair, salvage
+                has to be submitted to the insurer
+              </li>
+              <li>
+                <span class="fa fa-check-square-o"></span> &nbsp; Losses arising
+                out of any third party software related issues or issues arising
+                out of the abnormal functioning of OS (operating system) will
+                not be covered under the policy.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="mb-3 row">
+          <div class="col-12">
+              <ngx-otp-input [config]="otpInputConfig" (otpChange)="handeOtpChange($event)" (fill)="handleFillEvent($event)">
+</ngx-otp-input>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

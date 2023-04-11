@@ -1,0 +1,277 @@
+<main>
+  <div class="d-flex justify-content-center text-center mt-5">
+    <div id="sect1" class="container-fluid"></div>
+  </div>
+  <!-- <li class="mb-3">
+    <span class="fa fa-check-square-o"></span> For more details
+    kindly refer the policy wording on the ICICI Lombard website
+    <a (click)="goToLink('https://www.icicilombard.com/')" ><span type="button" style="color: blue"
+      >(wwwicicilombard.com)</span></a> 
+  </li> -->
+  <div class="container-fluid bg-trasparent mb-0 my-4 p-3 text-center d-flex align-items-center" style="color: #3d3d3d">
+    <i style="color: #3d3d3d; font-size: 30px" class="fa fa-home"></i>
+    &nbsp;
+    <span style="color: #3d3d3d; font-size: 30px">/</span>
+    &nbsp;
+    <h4 style="color: #3d3d3d" class="fw-bolder m-0">Extended Warranty</h4>
+    <!-- <p
+      class="fw-normal"
+      style="margin-top: -8px; color: #3d3d3d; padding: 20px"
+    >
+      <span> Add assets for insurane </span>
+    </p> -->
+  </div>
+</main>
+
+<div class="container-fluid">
+  <div class="card h-100">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <div class="card-title d-flex align-items-center m-0">
+        <span class="fa fa-chevron-right"></span>
+        <h5 class="fw-bold m-0 p-0 ms-2" style="color: #3d3d3d">Add Assets</h5>
+      </div>
+      <div class="card-tools">
+        <button [disabled]="fieldflag == true" 
+          type="button" class="btn btn-primary" (click)="addForm()">
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div>
+        <ng-container *ngFor="let item of Addcarddata; let i = index">
+          <div class="row py-3">
+            <div class="col-12">
+              <span class="badge alert-success fs-6">Asset - {{ i + 1 }}</span>
+              <button class="btn1 btn-warning pull-right" *ngIf="deleteflag == true" (click)="deleteRow(i)">
+                <i class="fa fa-minus px-3"></i>
+              </button>
+
+              <!-- <p style="color: black">Insured Asset - {{ i + 1 }}</p> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 form-group">
+              <select class="form-select" [(ngModel)]="item.assettype" (change)="
+                  manufacturedataget($event, item.assettype, i);
+                  tablemodified(item)
+                " [disabled]="fieldflag == true" name="assettype" id="assettype">
+                <option value="" disabled>Select Asset Type*</option>
+                <option *ngFor="let a of assettpearray" [value]="a">
+                  {{ a }}
+                </option>
+              </select>
+              <!-- <ng-select
+              placeholder="Asset Type"
+              [items]="assettpearray"
+              [searchable]="false"
+              bindLabel="name"
+                bindValue="name"
+                [closeOnSelect]="false"
+              name="assettype" id="assettype"
+              [(ngModel)]="item.assettype"
+                      >
+        </ng-select> -->
+            </div>
+            <div class="col-sm-3 form-group">
+              <select class="form-select" [(ngModel)]="item.manufacturer" (change)="tablemodified(item)"
+                [disabled]="fieldflag == true" name="manufacturer" id="manufacturer">
+                <option value="" disabled>Select Manufacturer*</option>
+                <option *ngFor="let b of manufaturetypearray[i]" [value]="b.manufacturer">
+                  {{ b.manufacturer }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-3 form-group">
+              <input type="text" class="form-control" name="model" id="model" (change)="tablemodified(item)"
+                [disabled]="fieldflag == true" [(ngModel)]="item.model" placeholder="Model*"
+                (ngModelChange)="item.model = $event.toUpperCase()" />
+            </div>
+            <div class="col-sm-3 form-group">
+              <input type="text" class="form-control" name="invoiceno" id="invoiceno" (change)="tablemodified(item)"
+                [disabled]="fieldflag == true" [(ngModel)]="item.invoiceno"
+                (ngModelChange)="item.invoiceno = $event.toUpperCase()" placeholder="Invoice Number*" />
+            </div>
+            <div class="col-sm-3 form-group" style="margin-top: -25px">
+              <!-- <input type="date"  class="form-control" name="dateofpurchase" id="dateofpurchase"
+                  [(ngModel)]="item.dateofpurchase" placeholder="Date of Purchase"> -->.
+
+              <div class="input-group">
+                <input class="form-control" onkeydown="return false" name="dp" (ngModelChange)="tablemodified(item)"
+                  [(ngModel)]="item.dateofpurchase" [minDate]="minDate" [maxDate]="maxDate" [disabled]="fieldflag == true" ngbDatepicker
+                  #d="ngbDatepicker" placeholder="Date of Purchase*" />
+                <div class="input-group-append">
+                  <button [disabled]="fieldflag == true" class="btn btn-outline-secondary calendar form-control"
+                    (click)="d.toggle()" style="padding: 0px" type="button"></button>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 form-group">
+              <select class="form-select" (change)="tablemodified(item)" [(ngModel)]="item.manufacturerwarranty"
+                name="manufacturerwarranty" [disabled]="fieldflag == true" id="manufacturerwarranty">
+                <option value="" disabled>Select Manufacturer Warranty*</option>
+                <option value="1">1 Year</option>
+                <option value="2">2 Year</option>
+              </select>
+            </div>
+            <div class="col-sm-3 form-group">
+
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">₹</span>
+                </div>
+                <input type="text" (keypress)="keyPressNumbers($event)" class="form-control" name="invoiceamount"
+                  id="invoiceamount" [disabled]="fieldflag == true" (change)="tablemodified(item)"
+                  [(ngModel)]="item.invoiceamount" placeholder="Invoice Amount Rupees*" />
+              </div>
+
+            </div>
+          </div>
+        </ng-container>
+
+        <hr class="line my-3" />
+        <div *ngIf="flagbutton == true" class="mt-4" style="color: #3d3d3d">
+          <p class="fw-normal" style="color: #fd7720">
+            <span class="fs-6 fw-bold"> Choose Plans </span>
+          </p>
+        </div>
+        <div *ngIf="flagbutton == true">
+          <ng-container *ngFor="let item of Addcarddata; let i = index">
+            <div class="container-fluid bg-trasparent p-0" style="position: relative">
+              <div class="row my-4">
+                <div class="col-6">
+                  <div class="card" [class]="{ 'card-active': data.arr[i] }" (change)="tablemodified(item)"
+                    (click)="selectcard(i, item)" style="margin-left: 0px; margin-top: 0px">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <h6 class="card-title">Premium amount of</h6>
+                          <br />
+                          <h2 style="position: relative; top: -20px">1 Year</h2>
+                        </div>
+                        <div class="col-6" style="text-align: right">
+                          <div class="col-sm-12">
+                            <span class="badge alert-success fs-6">Asset - {{ i + 1 }}</span>
+                          </div>
+                          <div class="col-sm-12" style="color: #f58220">
+                            <h3 class="card-text">
+                              ₹ {{ item.premiumamout1 }}
+                            </h3>
+                          </div>
+                          <div class="col-sm-12">
+                            <span style="font-size: small">Tax Inclusive</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="card" [class]="{ 'card-active': data.arr1[i] }" (change)="tablemodified(item)"
+                    (click)="selectcard1(i, item)" style="margin-right: 0px; margin-top: 0px">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <h6 class="card-title">Premium amount of</h6>
+                          <br />
+                          <h2 style="position: relative; top: -20px">2 Year</h2>
+                        </div>
+                        <div class="col-6" style="text-align: right">
+                          <div class="col-sm-12">
+                            <span class="badge alert-success fs-6">Asset - {{ i + 1 }}</span>
+
+                            <!-- <span> Asset - {{ i + 1 }}</span> -->
+                          </div>
+                          <div class="col-sm-12">
+                            <h3 class="card-text" style="color: #f58220">
+                              ₹ {{ item.premiumamout2 }}
+                            </h3>
+                          </div>
+                          <div class="col-sm-12">
+                            <span style="font-size: small">Tax Inclusive</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <!-- <div>
+            <button (click)="openmodel1()">
+              <span>click here</span>
+            </button>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-12" *ngIf="flagbutton != true">
+        <button type="button" class="btn btn-warning" (click)="calculateinsurance()">
+          Calculate
+        </button>
+      </div>
+      <div class="col-12" *ngIf="flagbutton == true">
+        <hr class="line my-3" />
+
+        <div class="d-flex align-items-center">
+          <a type="button" style="color: #f37e20; font-size: 14px; font-weight: 700" (click)="openmodel1()">Know more <i
+              class="fa fa-chevron-right"></i>
+          </a>
+        </div>
+
+        <button style="position: relative; top: -8px" type="button" [disabled]="nextbtndisflag == true"
+          class="btn btn-warning" (click)="saveandroute()">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white" id="exampleModalLabel">
+          Extended Warranty Features
+        </h5>
+        <button type="button" class="btn btn-link text-light" data-bs-dismiss="modal" aria-label="Close" type="button"
+          class="btn-close btn-close-white" data-mdb-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <div class="d-flex flex-row justify-content-center ms-2">
+            <ul class="list-unstyled mt-3 mb-4 fw-normal">
+              <li class="mb-3">
+                <span class="fa fa-check-square-o"></span> ICICI Lombard's
+                Extended Warranty Insurance for new devices would cover
+                <ol>
+                  <li>Electrical and Mechanical breakdown</li>
+                  <li>Repair or total loss</li>
+                </ol>
+              </li>
+              <li class="mb-3">
+                <span class="fa fa-check-square-o"></span> Your device would get
+                covered over and above it's manufacturer warranty
+              </li>
+              <li class="mb-3">
+                <span class="fa fa-check-square-o"></span> For more details
+                kindly refer the policy wording on the ICICI Lombard website
+                <a (click)="goToLink('https://www.icicilombard.com/')"><span type="button"
+                    style="color: blue">(wwwicicilombard.com)</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="mb-3 row">
+          <div class="col-12">
+              <ngx-otp-input [config]="otpInputConfig" (otpChange)="handeOtpChange($event)" (fill)="handleFillEvent($event)">
+</ngx-otp-input>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

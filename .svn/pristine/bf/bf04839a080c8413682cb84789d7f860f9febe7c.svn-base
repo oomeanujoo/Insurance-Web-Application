@@ -1,0 +1,19 @@
+<div>
+  <div class="header">
+    <div>
+      <img
+        alt="Logo"
+        src="https://www.icicilombard.com/feo-cdn/I/m/l0vv2OfC8.webp"
+        class="logo"
+      />
+    </div>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+    <!-- <app-toasts></app-toasts> -->
+  </div>
+</div>
+
+
+
+
