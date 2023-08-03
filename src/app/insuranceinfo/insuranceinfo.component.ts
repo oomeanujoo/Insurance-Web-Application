@@ -85,106 +85,107 @@ export class InsuranceinfoComponent implements OnInit {
   dateformat: any;
   getsaveddata(uiquevalue: any) {
     let that = this;
-    that.Addcarddata = [];
+    that.Addcarddata = [
+    ];
     that.flagbutton = true;
     that.deleteflag = true;
-    this.heroService
-      .ajaxcordys(
-        'FetchDataBasedOnUniqueno',
-        'http://schemas.cordys.com/EW_WSAppPackage',
-        {
-          uniqueno: uiquevalue,
-        }
-      )
-      .then((resp) => {
-        debugger;
-        that.Addcarddata = this.heroService.xmltojson(resp, 'ExtendedWarrantyInsuranceDetails');
-        console.log('usercheck', that.Addcarddata);
-        if (that.Addcarddata.length == 1) {
-          that.deleteflag = false;
-        }
-        for (let i = 0; i < that.Addcarddata.length; i++) {
-          if (that.Addcarddata[i].dateofpurchase != "") {
-            that.dateformat = {
-              year: Number(
-                moment(that.Addcarddata[i].dateofpurchase)
-                  .endOf("month")
-                  .format("YYYY")
-              ),
-              month: Number(
-                moment(that.Addcarddata[i].dateofpurchase)
-                  .endOf("month")
-                  .format("MM")
-              ),
-              day: Number(
-                moment(that.Addcarddata[i].dateofpurchase).format("DD")
-              ),
-            };
-            console.log(
-              "that.allData[i].OCCURRENCE_DATE",
-              that.Addcarddata[i].dateofpurchase
-            );
-            that.Addcarddata[i].dateofpurchase = that.dateformat;
-          }
-          that.manufacturedataget1(that.Addcarddata[i].assettype, i);
-        }
-        for (let i = 0; i < that.Addcarddata.length; i++) {
-          if (that.Addcarddata[i].premiumyear == '1') {
-            that.data.arr[i] = true;
-            that.data.arr1[i] = false;
-          }
-          else if (that.Addcarddata[i].premiumyear == '2') {
-            that.data.arr[i] = false;
-            that.data.arr1[i] = true;
-          }
-          that.Addcarddata[i].premiumamout1 = Number(that.Addcarddata[i].invoiceamount) / 50;
-          console.log('that.Addcarddata[i].premiumamout1', that.Addcarddata[i].premiumamout1)
-          that.Addcarddata[i].premiumamout2 = Number(that.Addcarddata[i].invoiceamount) / 25;
-        }
-      });
+    // this.heroService
+    //   .ajaxcordys(
+    //     'FetchDataBasedOnUniqueno',
+    //     'http://schemas.cordys.com/EW_WSAppPackage',
+    //     {
+    //       uniqueno: uiquevalue,
+    //     }
+    //   )
+    //   .then((resp) => {
+    //     debugger;
+    //     that.Addcarddata = this.heroService.xmltojson(resp, 'ExtendedWarrantyInsuranceDetails');
+    //     console.log('usercheck', that.Addcarddata);
+    //     if (that.Addcarddata.length == 1) {
+    //       that.deleteflag = false;
+    //     }
+    //     for (let i = 0; i < that.Addcarddata.length; i++) {
+    //       if (that.Addcarddata[i].dateofpurchase != "") {
+    //         that.dateformat = {
+    //           year: Number(
+    //             moment(that.Addcarddata[i].dateofpurchase)
+    //               .endOf("month")
+    //               .format("YYYY")
+    //           ),
+    //           month: Number(
+    //             moment(that.Addcarddata[i].dateofpurchase)
+    //               .endOf("month")
+    //               .format("MM")
+    //           ),
+    //           day: Number(
+    //             moment(that.Addcarddata[i].dateofpurchase).format("DD")
+    //           ),
+    //         };
+    //         console.log(
+    //           "that.allData[i].OCCURRENCE_DATE",
+    //           that.Addcarddata[i].dateofpurchase
+    //         );
+    //         that.Addcarddata[i].dateofpurchase = that.dateformat;
+    //       }
+    //       that.manufacturedataget1(that.Addcarddata[i].assettype, i);
+    //     }
+    //     for (let i = 0; i < that.Addcarddata.length; i++) {
+    //       if (that.Addcarddata[i].premiumyear == '1') {
+    //         that.data.arr[i] = true;
+    //         that.data.arr1[i] = false;
+    //       }
+    //       else if (that.Addcarddata[i].premiumyear == '2') {
+    //         that.data.arr[i] = false;
+    //         that.data.arr1[i] = true;
+    //       }
+    //       that.Addcarddata[i].premiumamout1 = Number(that.Addcarddata[i].invoiceamount) / 50;
+    //       console.log('that.Addcarddata[i].premiumamout1', that.Addcarddata[i].premiumamout1)
+    //       that.Addcarddata[i].premiumamout2 = Number(that.Addcarddata[i].invoiceamount) / 25;
+    //     }
+    //   });
   }
   manufacturedataget1(asset: any, i: any) {
     let that = this;
     debugger;
-    this.heroService
-      .ajaxcordys(
-        'GetManufacturerbyAssettype',
-        'http://schemas.cordys.com/EW_WSAppPackage',
-        {
-          assettype: asset,
-        }
+    // this.heroService
+    //   .ajaxcordys(
+    //     'GetManufacturerbyAssettype',
+    //     'http://schemas.cordys.com/EW_WSAppPackage',
+    //     {
+    //       assettype: asset,
+    //     }
 
-      )
-      .then((resp) => {
-        debugger;
-        let a = this.heroService.xmltojson(resp, 'AssetManufacturerDetails')
-        // if(a.length != 0) {
-        that.manufaturetypearray[i] = a;
-        //}
+    //   )
+    //   .then((resp) => {
+    //     debugger;
+    //     let a = this.heroService.xmltojson(resp, 'AssetManufacturerDetails')
+    //     // if(a.length != 0) {
+    //     that.manufaturetypearray[i] = a;
+    //     //}
 
-        console.log(that.manufaturetypearray);
-      });
+    //     console.log(that.manufaturetypearray);
+    //   });
   }
   manufaturetypearray: any = ['', '', '', '', '', '', '', '', '', '', ''];
   manufacturedataget(event: any, item: any, i: any) {
     let that = this;
     debugger;
-    that.Addcarddata[i].manufacturer = ''
-    this.heroService
-      .ajaxcordys(
-        'GetManufacturerbyAssettype',
-        'http://schemas.cordys.com/EW_WSAppPackage',
-        {
-          assettype: item,
-        }
+    // that.Addcarddata[i].manufacturer = ''
+    // this.heroService
+    //   .ajaxcordys(
+    //     'GetManufacturerbyAssettype',
+    //     'http://schemas.cordys.com/EW_WSAppPackage',
+    //     {
+    //       assettype: item,
+    //     }
 
-      )
-      .then((resp) => {
-        debugger;
-        let a = this.heroService.xmltojson(resp, 'AssetManufacturerDetails')
-        that.manufaturetypearray[i] = a;
-        console.log(that.manufaturetypearray);
-      });
+    //   )
+    //   .then((resp) => {
+    //     debugger;
+    //     let a = this.heroService.xmltojson(resp, 'AssetManufacturerDetails')
+    //     that.manufaturetypearray[i] = a;
+    //     console.log(that.manufaturetypearray);
+    //   });
   }
 
   cardselected: any = -1;
@@ -201,7 +202,7 @@ export class InsuranceinfoComponent implements OnInit {
    let  aYearFromNow = new Date();
 
     aYearFromNow.setDate(aYearFromNow.getDate() + 365);
-   
+
     for (let j = 0; j < that.Addcarddata.length; j++) {
       if (j == i) {
         that.Addcarddata[j].premiumyear = '1';
@@ -262,20 +263,20 @@ export class InsuranceinfoComponent implements OnInit {
   beforaddvalidation() {
     let that = this;
     debugger;
-    for (let i = 0; i < that.Addcarddata.length; i++) {
-      that.assetindex = i + 1;
-      if (that.isEmpty(that.Addcarddata[i].assettype) || that.isEmpty(that.Addcarddata[i].manufacturer)
-        || that.isEmpty(that.Addcarddata[i].model) || that.isEmpty(that.Addcarddata[i].invoiceno) || that.isEmpty(that.Addcarddata[i].dateofpurchase)
-        || that.isEmpty(that.Addcarddata[i].manufacturerwarranty) || that.isEmpty(that.Addcarddata[i].invoiceamount)) {
-        that.toastrService.error("Please Fill All Details Asset-" + that.assetindex, '', { timeOut: 1200 });
-        return false;
-      }
-    }
+    // for (let i = 0; i < that.Addcarddata.length; i++) {
+    //   that.assetindex = i + 1;
+    //   if (that.isEmpty(that.Addcarddata[i].assettype) || that.isEmpty(that.Addcarddata[i].manufacturer)
+    //     || that.isEmpty(that.Addcarddata[i].model) || that.isEmpty(that.Addcarddata[i].invoiceno) || that.isEmpty(that.Addcarddata[i].dateofpurchase)
+    //     || that.isEmpty(that.Addcarddata[i].manufacturerwarranty) || that.isEmpty(that.Addcarddata[i].invoiceamount)) {
+    //     that.toastrService.error("Please Fill All Details Asset-" + that.assetindex, '', { timeOut: 1200 });
+    //     return false;
+    //   }
+    // }
     return true;
   }
 
 
-  // input field number accpect 
+  // input field number accpect
   keyPressNumbers(event: any) {
     var charCode = event.which ? event.which : event.keyCode;
     // Only Numbers 0-9
@@ -304,37 +305,37 @@ export class InsuranceinfoComponent implements OnInit {
 
   validation() {
     let that = this;
-    for (let i = 0; i < that.Addcarddata.length; i++) {
-      if (that.isEmpty(that.Addcarddata[i].assettype)) {
-        that.toastrService.error("Please Select Asset Type", '', { timeOut: 1200 });
-        return false;
-      }
-      if (that.isEmpty(that.Addcarddata[i].manufacturer)) {
-        that.toastrService.error("Please Select Manufacture", '', { timeOut: 1200 });
-        return false;
-      }
-      if (that.isEmpty(that.Addcarddata[i].model)) {
-        that.toastrService.error("Please Enter Model", '', { timeOut: 1200 });
-        return false;
-      }
-      if (that.isEmpty(that.Addcarddata[i].invoiceno)) {
-        that.toastrService.error("Please Enter Inovice Number", '', { timeOut: 1200 });
-        return false;
-      }
-      if (that.isEmpty(that.Addcarddata[i].dateofpurchase)) {
-        that.toastrService.error("Please Select Date of Purchase", '', { timeOut: 1200 });
-        return false;
-      }
-      if (that.isEmpty(that.Addcarddata[i].manufacturerwarranty)) {
-        that.toastrService.error("Please Select Manufacturer Warranty", '', { timeOut: 1200 });
-        return false;
-      }
-      if (that.isEmpty(that.Addcarddata[i].invoiceamount)) {
-        that.toastrService.error("Please Enter Invoice Ammount", '', { timeOut: 1200 });
-        return false;
-      }
+    // for (let i = 0; i < that.Addcarddata.length; i++) {
+    //   if (that.isEmpty(that.Addcarddata[i].assettype)) {
+    //     that.toastrService.error("Please Select Asset Type", '', { timeOut: 1200 });
+    //     return false;
+    //   }
+    //   if (that.isEmpty(that.Addcarddata[i].manufacturer)) {
+    //     that.toastrService.error("Please Select Manufacture", '', { timeOut: 1200 });
+    //     return false;
+    //   }
+    //   if (that.isEmpty(that.Addcarddata[i].model)) {
+    //     that.toastrService.error("Please Enter Model", '', { timeOut: 1200 });
+    //     return false;
+    //   }
+    //   if (that.isEmpty(that.Addcarddata[i].invoiceno)) {
+    //     that.toastrService.error("Please Enter Inovice Number", '', { timeOut: 1200 });
+    //     return false;
+    //   }
+    //   if (that.isEmpty(that.Addcarddata[i].dateofpurchase)) {
+    //     that.toastrService.error("Please Select Date of Purchase", '', { timeOut: 1200 });
+    //     return false;
+    //   }
+    //   if (that.isEmpty(that.Addcarddata[i].manufacturerwarranty)) {
+    //     that.toastrService.error("Please Select Manufacturer Warranty", '', { timeOut: 1200 });
+    //     return false;
+    //   }
+    //   if (that.isEmpty(that.Addcarddata[i].invoiceamount)) {
+    //     that.toastrService.error("Please Enter Invoice Ammount", '', { timeOut: 1200 });
+    //     return false;
+    //   }
 
-    }
+    // }
     return true;
   }
   isEmpty(value: any) {
@@ -375,30 +376,32 @@ export class InsuranceinfoComponent implements OnInit {
   deletefromBack() {
     console.log(this.tempSNO);
     let that = this;
-    for (let c = 0; c < this.tempSNO.length; c++) {
-      if (this.tempSNO[c].ew_id != "") {
-        this.deliics = {
-          old: {
-            "ExtendedWarrantyInsuranceDetails": {
-              ew_id: this.tempSNO[c].ew_id
-            }
-          }
-        };
-        console.log("DeleteIICS=>", this.deliics);
-        this.heroService
-          .ajaxcordys(
-            "UpdateExtendedWarrantyInsuranceDetails",
-            "http://schemas.cordys.com/EW_WSAppPackage",
-            {
-              tuple: this.deliics,
-            }
-          )
-          .then((resp) => {
-            that.toastrService.success("Data Deleted Successfully!", '', { timeOut: 1000 });
-          });
-      }
-    }
+    // for (let c = 0; c < this.tempSNO.length; c++) {
+    //   if (this.tempSNO[c].ew_id != "") {
+    //     this.deliics = {
+    //       old: {
+    //         "ExtendedWarrantyInsuranceDetails": {
+    //           ew_id: this.tempSNO[c].ew_id
+    //         }
+    //       }
+    //     };
+    //     console.log("DeleteIICS=>", this.deliics);
+    //     this.heroService
+    //       .ajaxcordys(
+    //         "UpdateExtendedWarrantyInsuranceDetails",
+    //         "http://schemas.cordys.com/EW_WSAppPackage",
+    //         {
+    //           tuple: this.deliics,
+    //         }
+    //       )
+    //       .then((resp) => {
+    //         that.toastrService.success("Data Deleted Successfully!", '', { timeOut: 1000 });
+    //       });
+    //   }
+    // }
     this.tempSNO = [];
+    that.toastrService.success("Data Deleted Successfully!", '', { timeOut: 1000 });
+
   }
 
   cardselectvalidation() {
@@ -513,7 +516,7 @@ export class InsuranceinfoComponent implements OnInit {
                 premiumyear: that.Addcarddata[i].premiumyear ? that.Addcarddata[i].premiumyear : "",
                 premiumamount: that.Addcarddata[i].premiumamount ? that.Addcarddata[i].premiumamount : "",
                 Temp4: moment(new Date()).format("DD-MM-YYYY") ? moment(new Date()).format("DD-MM-YYYY") : "",
-                Temp5: that.Addcarddata[i].Temp5 ? that.Addcarddata[i].Temp5 : ""           
+                Temp5: that.Addcarddata[i].Temp5 ? that.Addcarddata[i].Temp5 : ""
               },
             },
           };
@@ -534,29 +537,31 @@ export class InsuranceinfoComponent implements OnInit {
   updateDataAfterSave(tuple: any) {
     let that = this;
     debugger;
-    this.heroService
-      .ajaxcordys(
-        "UpdateExtendedWarrantyInsuranceDetails",
-        "http://schemas.cordys.com/EW_WSAppPackage",
-        {
-          tuple: tuple,
-        }
+    // this.heroService
+    //   .ajaxcordys(
+    //     "UpdateExtendedWarrantyInsuranceDetails",
+    //     "http://schemas.cordys.com/EW_WSAppPackage",
+    //     {
+    //       tuple: tuple,
+    //     }
 
-      )
-      .then((resp) => {
-        debugger;
-        let result = this.heroService.xmltojson(resp, 'ExtendedWarrantyInsuranceDetails');
+    //   )
+    //   .then((resp) => {
+    //     debugger;
+    //     let result = this.heroService.xmltojson(resp, 'ExtendedWarrantyInsuranceDetails');
 
-        if (result.length > 0) {
-          that.setvalue = that.randomnumber;
-        }
-        debugger;
-        that.toastrService.success("Data saved successfully.", '', { timeOut: 1000 });
-        this.heroService.setitem_local('unquekey', that.setvalue);
-        this.heroService.goto('/policysummary');
+    //     if (result.length > 0) {
+    //       that.setvalue = that.randomnumber;
+    //     }
+    //     debugger;
+    //     that.toastrService.success("Data saved successfully.", '', { timeOut: 1000 });
+    //     this.heroService.setitem_local('unquekey', that.setvalue);
+    //     this.heroService.goto('/policysummary');
 
-      });
-
+    //   });
+      that.toastrService.success("Data saved successfully.", '', { timeOut: 1000 });
+      this.heroService.setitem_local('unquekey', that.setvalue);
+      this.heroService.goto('/policysummary');
   }
 
 

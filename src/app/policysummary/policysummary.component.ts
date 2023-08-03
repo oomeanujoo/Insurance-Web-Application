@@ -52,54 +52,54 @@ export class PolicysummaryComponent implements OnInit {
   ];
   userexuctandnot(name: any, number: any, pan: any) {
     let that = this;
-    this.heroService
-      .ajaxcordys(
-        'CheckIfUserExist',
-        'http://schemas.cordys.com/EW_WSAppPackage',
-        {
-          name: name,
-          contactno: number,
-          pan: pan
-          // name: 'Parul Sharma',
-          // contactno: 7568561737,
-          // pan: 'ABCTY1234D'
-        }
+    // this.heroService
+    //   .ajaxcordys(
+    //     'CheckIfUserExist',
+    //     'http://schemas.cordys.com/EW_WSAppPackage',
+    //     {
+    //       name: name,
+    //       contactno: number,
+    //       pan: pan
+    //       // name: 'Parul Sharma',
+    //       // contactno: 7568561737,
+    //       // pan: 'ABCTY1234D'
+    //     }
 
-      )
-      .then((resp) => {
-        debugger;
-        let usercheck = this.heroService.xmltojson(resp, 'CutomerdetailsNew');
-        console.log('usercheck', usercheck);
-        debugger;
-        if (usercheck.length != 0) {
-          that.savedData = usercheck;
-        }
-        // else {
-        //     that.toastrService.error("No Data", '', { timeOut: 1500 });
-        //   }
-      });
+    //   )
+    //   .then((resp) => {
+    //     debugger;
+    //     let usercheck = this.heroService.xmltojson(resp, 'CutomerdetailsNew');
+    //     console.log('usercheck', usercheck);
+    //     debugger;
+    //     if (usercheck.length != 0) {
+    //       that.savedData = usercheck;
+    //     }
+    //     // else {
+    //     //     that.toastrService.error("No Data", '', { timeOut: 1500 });
+    //     //   }
+    //   });
   }
 
   tableData: any = []
   TableData(unqno: any) {
     let that = this;
-    this.heroService
-      .ajaxcordys(
-        'FetchDataBasedOnUniqueno ',
-        'http://schemas.cordys.com/EW_WSAppPackage',
-        {
-          uniqueno: unqno,
+    // this.heroService
+    //   .ajaxcordys(
+    //     'FetchDataBasedOnUniqueno ',
+    //     'http://schemas.cordys.com/EW_WSAppPackage',
+    //     {
+    //       uniqueno: unqno,
 
-        }
+    //     }
 
-      )
-      .then((resp) => {
-        debugger;
-        that.tableData = this.heroService.xmltojson(resp, 'ExtendedWarrantyInsuranceDetails');
-        console.log(that.tableData)
+    //   )
+    //   .then((resp) => {
+    //     debugger;
+    //     that.tableData = this.heroService.xmltojson(resp, 'ExtendedWarrantyInsuranceDetails');
+    //     console.log(that.tableData)
 
-        debugger;
-      });
+    //     debugger;
+    //   });
   }
 
   goTo() {
