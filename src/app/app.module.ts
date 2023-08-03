@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { ToastrModule, ToastNoAnimationModule, ToastContainerModule, } from 'ngx-toastr';
-import { NgxOtpInputModule } from 'ngx-otp-input'; 
+import { NgxOtpInputModule } from 'ngx-otp-input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePickerDirective } from './date-picker.directive';
@@ -27,7 +27,7 @@ import { DatePickerDirective } from './date-picker.directive';
     NgxOtpInputModule,
     NgbModule,
     FormsModule, ReactiveFormsModule
-  
+
   ],
   providers: [],
   bootstrap: [AppComponent]
